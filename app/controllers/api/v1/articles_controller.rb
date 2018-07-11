@@ -28,9 +28,10 @@ class Api::V1::ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     respond_to do |format|
-      if @article.save        
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+      if @article.save
+        render json: @article, status: :created, location:        api_v1_article_url(@article)
+        # format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        # format.json { render :show, status: :created, location: @article }
       else
         render json: @article.errors, status: :unprocessable_entity
         # format.html { render :new }
@@ -44,8 +45,9 @@ class Api::V1::ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+        render json: @article
+        # format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @article }
       else
         render json: @article.errors, status: :unprocessable_entity
         # format.html { render :edit }

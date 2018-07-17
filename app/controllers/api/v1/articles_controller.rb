@@ -29,7 +29,7 @@ class Api::V1::ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        render json: @article, status: :created, location:        api_v1_article_url(@article)
+        render json: @article, status: :created, location: api_v1_article_url(@article)
         # format.html { redirect_to @article, notice: 'Article was successfully created.' }
         # format.json { render :show, status: :created, location: @article }
       else
